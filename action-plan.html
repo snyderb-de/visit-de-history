@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Action Plan — Visit Delaware History</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #F4F2EE;
+      color: #2C2C2C;
+      line-height: 1.5;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: linear-gradient(135deg, #1B3A6B 0%, #2D5016 100%);
+      color: #fff;
+      padding: 40px 32px 32px;
+    }
+    .header-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .header h1 { font-size: 1.7rem; font-weight: 700; }
+    .header-sub { font-size: 0.85rem; opacity: 0.75; margin-top: 4px; }
+    .last-updated { font-size: 0.72rem; background: rgba(255,255,255,0.15); padding: 5px 12px; border-radius: 20px; }
+
+    /* ── Progress Bar ── */
+    .progress-section { background: rgba(255,255,255,0.1); padding: 20px 32px; border-top: 1px solid rgba(255,255,255,0.15); }
+    .progress-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.75; margin-bottom: 8px; }
+    .progress-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .progress-bar-wrap { flex: 1; min-width: 200px; background: rgba(255,255,255,0.2); border-radius: 8px; height: 10px; }
+    .progress-bar-fill { height: 10px; border-radius: 8px; background: #7EC850; }
+    .progress-pct { font-size: 1rem; font-weight: 700; }
+    .progress-counts { font-size: 0.8rem; opacity: 0.8; }
+
+    /* ── Stats Row ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      max-width: 1100px;
+      margin: 32px auto;
+      padding: 0 32px;
+    }
+    .stat-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid #E0DAD0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    .stat-num { font-size: 2.2rem; font-weight: 700; color: #1B3A6B; display: block; }
+    .stat-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: #888; margin-top: 2px; }
+
+    /* ── Main Layout ── */
+    .main { max-width: 1100px; margin: 0 auto; padding: 0 32px 64px; }
+    .section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #555;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #E0DAD0;
+    }
+
+    /* ── Columns ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px; }
+    @media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* ── Task List ── */
+    .task-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
+    .task {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #fff;
+      border: 1px solid #E8E3D8;
+      border-radius: 6px;
+      padding: 14px 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .task-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+    .task-body { flex: 1; }
+    .task-name { font-weight: 600; font-size: 0.9rem; color: #222; }
+    .task-detail { font-size: 0.78rem; color: #888; margin-top: 2px; }
+    .task-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .badge-done { background: #D4EDDA; color: #1A6630; }
+    .badge-todo { background: #FFF3CD; color: #856404; }
+    .badge-need { background: #F8D7DA; color: #721C24; }
+    .badge-later { background: #E8E8E8; color: #555; }
+
+    /* ── Sites Table ── */
+    .sites-table-wrap { overflow-x: auto; margin-bottom: 40px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 0.82rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    thead tr { background: #1B3A6B; color: #fff; }
+    th { padding: 10px 14px; text-align: left; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+    td { padding: 10px 14px; border-bottom: 1px solid #F0EDE6; vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #FAFAF7; }
+    tr:hover td { background: #F0EDE6; }
+    .county-kent { color: #2D5016; font-weight: 600; }
+    .county-newcastle { color: #1B3A6B; font-weight: 600; }
+    .county-sussex { color: #7B4A0E; font-weight: 600; }
+    .cell-yes { color: #1A6630; font-weight: 600; }
+    .cell-tbd { color: #BBB; font-style: italic; }
+    .cell-landmark { font-size: 0.68rem; background: #FFF3CD; color: #7D5A00; border-radius: 4px; padding: 2px 7px; }
+
+    /* ── Google Maps Guide ── */
+    .guide-box {
+      background: #EEF4FF;
+      border: 1px solid #C0D4F5;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+    .guide-box h3 { color: #1B3A6B; font-size: 1rem; margin-bottom: 12px; }
+    .guide-steps { display: flex; flex-direction: column; gap: 8px; }
+    .guide-step { display: flex; gap: 12px; align-items: flex-start; font-size: 0.85rem; color: #333; }
+    .step-num {
+      background: #1B3A6B;
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .guide-link { color: #1B3A6B; font-weight: 600; text-decoration: underline; }
+
+    /* ── Notes ── */
+    .note-box {
+      background: #FFFBEA;
+      border-left: 4px solid #F0C040;
+      border-radius: 0 6px 6px 0;
+      padding: 16px 20px;
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 16px;
+    }
+    .note-box strong { color: #333; }
+
+    /* ── Footer ── */
+    footer {
+      background: #1B3A6B;
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 24px;
+      font-size: 0.78rem;
+    }
+    footer strong { color: #fff; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-top">
+    <div>
+      <h1>📋 Visit Delaware History — Action Plan</h1>
+      <p class="header-sub">Project dashboard for the DE Historic Sites web page &amp; Google Maps build-out</p>
+    </div>
+    <span class="last-updated">Updated: March 2026</span>
+  </div>
+  <div class="progress-section">
+    <div class="progress-label">Overall Progress</div>
+    <div class="progress-row">
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" style="width: 75%"></div>
+      </div>
+      <span class="progress-pct">75%</span>
+      <span class="progress-counts">6 of 8 major tasks complete</span>
+    </div>
+  </div>
+</header>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat-card"><span class="stat-num">31</span><span class="stat-label">Total Sites</span></div>
+  <div class="stat-card"><span class="stat-num">3</span><span class="stat-label">Counties</span></div>
+  <div class="stat-card"><span class="stat-num">6</span><span class="stat-label">Nat'l Landmarks</span></div>
+  <div class="stat-card"><span class="stat-num">6</span><span class="stat-label">Confirmed Markers</span></div>
+  <div class="stat-card"><span class="stat-num">0</span><span class="stat-label">Photos Added</span></div>
+  <div class="stat-card"><span class="stat-num">31</span><span class="stat-label">Descriptions Added</span></div>
+  <div class="stat-card"><span class="stat-num">31</span><span class="stat-label">Website URLs Found</span></div>
+</div>
+
+<main class="main">
+
+  <!-- TASKS -->
+  <div class="two-col">
+
+    <div>
+      <p class="section-title">✅ Done</p>
+      <div class="task-list">
+        <div class="task">
+          <span class="task-icon">✅</span>
+          <div class="task-body">
+            <div class="task-name">Extract all 31 sites from spreadsheet</div>
+            <div class="task-detail">DE Historic Sites for DE Today (002).xlsx → grouped by county</div>
+          </div>
+          <span class="task-badge badge-done">Done</span>
+        </div>
+        <div class="task">
+          <span class="task-icon">✅</span>
+          <div class="task-body">
+            <div class="task-name">Match sites to Historical Markers</div>
+            <div class="task-detail">6 confirmed matches from 743-marker master list</div>
+          </div>
+          <span class="task-badge badge-done">Done</span>
+        </div>
+        <div class="task">
+          <span class="task-icon">✅</span>
+          <div class="task-body">
+            <div class="task-name">Build WPBakery shortcode content</div>
+            <div class="task-detail">visit-de-history.html — map + county headers + 31 site rows (image / description / button)</div>
+          </div>
+          <span class="task-badge badge-done">Done</span>
+        </div>
+        <div class="task">
+          <span class="task-icon">✅</span>
+          <div class="task-body">
+            <div class="task-name">Create Google Maps CSV</div>
+            <div class="task-detail">sites-for-google-maps.csv — ready to import to Google My Maps</div>
+          </div>
+          <span class="task-badge badge-done">Done</span>
+        </div>
+        <div class="task">
+          <span class="task-icon">✅</span>
+          <div class="task-body">
+            <div class="task-name">Find website URLs for all 31 sites</div>
+            <div class="task-detail">31/31 found — NPS, official sites, DE Historical Affairs, and more</div>
+          </div>
+          <span class="task-badge badge-done">Done</span>
+        </div>
+        <div class="task">
+          <span class="task-icon">✅</span>
+          <div class="task-body">
+            <div class="task-name">Write descriptions for all 31 sites</div>
+            <div class="task-detail">31/31 factual paragraphs — no em dashes, no narrative language</div>
+          </div>
+          <span class="task-badge badge-done">Done</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="section-title">📌 Still To Do</p>
+      <div class="task-list">
+        <div class="task">
+          <span class="task-icon">🗺</span>
+          <div class="task-body">
+            <div class="task-name">Create Google My Maps &amp; get embed URL</div>
+            <div class="task-detail">Import sites-for-google-maps.csv → publish map → copy embed URL → replace PASTE_GOOGLE_MY_MAPS_EMBED_URL_HERE in shortcode</div>
+          </div>
+          <span class="task-badge badge-todo">To Do</span>
+        </div>
+        <div class="task">
+          <span class="task-icon">🖼</span>
+          <div class="task-body">
+            <div class="task-name">Upload photos &amp; add WP media IDs</div>
+            <div class="task-detail">Upload one image per site to WordPress Media Library → replace each PHOTO_ID in shortcode with the WP media integer ID</div>
+          </div>
+          <span class="task-badge badge-need">Need from You</span>
+        </div>
+        <div class="task">
+          <span class="task-icon">📋</span>
+          <div class="task-body">
+            <div class="task-name">Paste shortcode into WordPress page</div>
+            <div class="task-detail">Copy visit-de-history.html contents → paste into WP page editor (Text / Code mode) → publish</div>
+          </div>
+          <span class="task-badge badge-todo">To Do</span>
+        </div>
+      </div>
+
+      <p class="section-title" style="margin-top:28px;">🚫 Out of Scope</p>
+      <div style="background:#FFF8F0;border:1px solid #F0DCC0;border-radius:6px;padding:16px 20px;font-family:sans-serif;font-size:0.82rem;color:#7A5A30;line-height:1.7;">
+        Mobile optimization &nbsp;·&nbsp; Filter / search &nbsp;·&nbsp; Plan Your Visit section &nbsp;·&nbsp;
+        Brand / design matching &nbsp;·&nbsp; Hero banner / stats &nbsp;·&nbsp; Badge system
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GOOGLE MAPS GUIDE -->
+  <!-- GOOGLE MAPS GUIDE -->
+  <p class="section-title">🗺 How to Bulk Upload to Google My Maps</p>
+  <div class="guide-box">
+    <h3>Import <code>sites-for-google-maps.csv</code> in 5 steps:</h3>
+    <div class="guide-steps">
+      <div class="guide-step">
+        <span class="step-num">1</span>
+        <span>Go to <a class="guide-link" href="https://mymaps.google.com" target="_blank">mymaps.google.com</a> and click <strong>"+ Create a New Map"</strong></span>
+      </div>
+      <div class="guide-step">
+        <span class="step-num">2</span>
+        <span>In the left panel under "Untitled Layer", click <strong>"Import"</strong></span>
+      </div>
+      <div class="guide-step">
+        <span class="step-num">3</span>
+        <span>Upload <strong>sites-for-google-maps.csv</strong> from your visit-de-history folder</span>
+      </div>
+      <div class="guide-step">
+        <span class="step-num">4</span>
+        <span>When prompted for the location column, select <strong>"Address"</strong> (Google will geocode the addresses automatically, or use Lat/Long if available)</span>
+      </div>
+      <div class="guide-step">
+        <span class="step-num">5</span>
+        <span>When prompted for the title column, select <strong>"Name"</strong> — then click Finish. All 31 sites will appear as pins on the map.</span>
+      </div>
+    </div>
+    <p style="margin-top:16px;font-size:0.8rem;color:#555;">💡 <strong>Tip:</strong> After import, you can color-code pins by County using the "Style by data column" option in Google My Maps.</p>
+  </div>
+
+  <!-- NOTES -->
+  <p class="section-title">📝 Notes &amp; Flags</p>
+  <div class="note-box">
+    <strong>** prefix on site names</strong> = likely National Landmark (6 sites: Corbit-Sharp House, New Castle County Courthouse, Howard High School, Fort Christina, Cooch's Bridge Historic District, Hale-Byrnes House). Confirm categorization.
+  </div>
+  <div class="note-box">
+    <strong>Possible additional marker matches</strong> (need manual review): Gov. William H. Ross House → "Governor William H. Ross" marker in Seaford · Old Christ Church Laurel → "Old Christ Church (Dover)" marker · Sussex County Courthouse → confirmed marker · Prospect A.M.E. Church → confirmed marker. Check the DE Archives site for exact matches.
+  </div>
+  <div class="note-box">
+    <strong>Some addresses are directions, not street addresses</strong> (e.g. "1 mi. S of Smyrna on U.S. 13"). Google Maps will geocode best-effort — verify pins after import and drag to correct positions as needed.
+  </div>
+
+  <!-- SITES TABLE -->
+  <p class="section-title">📊 All Sites — Status Overview</p>
+  <div class="sites-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Site Name</th>
+          <th>County</th>
+          <th>City</th>
+          <th>Landmark</th>
+          <th>Marker</th>
+          <th>Bicent. Map</th>
+          <th>Photo</th>
+          <th>Desc.</th>
+          <th>URL</th>
+        </tr>
+      </thead>
+      <tbody>
+<tr><td>1</td><td>Loockerman Hall</td><td class="county-kent">Kent</td><td>Dover</td><td><span class="cell-tbd">—</span></td><td><span class="cell-yes">✓</span></td><td><span class="cell-tbd">—</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://www.nps.gov/places/loockerman-hall.htm" target="_blank" style="color:#1B3A6B;text-decoration:underline;">NPS</a></td></tr>
+<tr><td>2</td><td>Belmont Hall</td><td class="county-kent">Kent</td><td>Smyrna</td><td><span class="cell-tbd">—</span></td><td><span class="cell-yes">✓</span></td><td><span class="cell-yes">✓</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="http://www.belmonthall.org/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">Official Site</a></td></tr>
+<tr><td>3</td><td>Governor's House</td><td class="county-kent">Kent</td><td>Dover</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-yes">✓</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://woodburn.delaware.gov/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">Official Site</a></td></tr>
+<tr><td>4</td><td>Brecknock</td><td class="county-kent">Kent</td><td>Camden</td><td><span class="cell-tbd">—</span></td><td><span class="cell-yes">✓</span></td><td><span class="cell-tbd">—</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://visitcentraldelaware.com/directory/brecknock-county-park/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">Visit Central DE</a></td></tr>
+<tr><td>5</td><td>Dickinson, John, House</td><td class="county-kent">Kent</td><td>Dover</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-yes">✓</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://history.delaware.gov/john-dickinson-plantation/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">DE Historical Affairs</a></td></tr>
+<tr><td>6</td><td>Barratt's Chapel</td><td class="county-kent">Kent</td><td>Frederica</td><td><span class="cell-tbd">—</span></td><td><span class="cell-yes">✓</span></td><td><span class="cell-tbd">—</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://www.barrattschapel.org/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">Official Site</a></td></tr>
+<tr><td>7</td><td>Star Hill AME Church</td><td class="county-kent">Kent</td><td>Camden</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://visitcentraldelaware.com/directory/star-hill-museum-ame-church/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">Visit Central DE</a></td></tr>
+<tr><td>8</td><td>Old Statehouse or The Green</td><td class="county-kent">Kent</td><td>Dover</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-yes">✓</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://history.delaware.gov/old-state-house/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">DE Historical Affairs</a></td></tr>
+<tr><td>9</td><td>Thorne, Parson, Mansion</td><td class="county-kent">Kent</td><td>Milford</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-yes">✓</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://visitcentraldelaware.com/directory/parson-thorne-mansion/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">Visit Central DE</a></td></tr>
+<tr><td>10</td><td>Vincelette Futuro House</td><td class="county-kent">Kent</td><td>Houston</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://www.nps.gov/places/vincelette-futuro-house.htm" target="_blank" style="color:#1B3A6B;text-decoration:underline;">NPS</a></td></tr>
+<tr><td>11</td><td>Corbit-Sharp House</td><td class="county-newcastle">New Castle</td><td>Odessa</td><td><span class="cell-landmark">Nat'l Landmark</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-yes">✓</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://historicodessa.org/explore-our-property/historic-houses/corbit-sharp-house" target="_blank" style="color:#1B3A6B;text-decoration:underline;">Historic Odessa Foundation</a></td></tr>
+<tr><td>12</td><td>Scott A.M.E. Zion Church</td><td class="county-newcastle">New Castle</td><td>Wilmington</td><td><span class="cell-tbd">—</span></td><td><span class="cell-yes">✓</span></td><td><span class="cell-tbd">—</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://amezion.org/location/scott/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">AME Zion Church</a></td></tr>
+<tr><td>13</td><td>New Castle Historic District</td><td class="county-newcastle">New Castle</td><td>New Castle</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-yes">✓</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://www.newcastlehistory.org/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">New Castle Historical Society</a></td></tr>
+<tr><td>14</td><td>New Castle County Court House</td><td class="county-newcastle">New Castle</td><td>New Castle</td><td><span class="cell-landmark">Nat'l Landmark</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-yes">✓</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://history.delaware.gov/new-castle-court-house-museum/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">DE Historical Affairs</a></td></tr>
+<tr><td>15</td><td>Eleutherian Mills</td><td class="county-newcastle">New Castle</td><td>Wilmington</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-yes">✓</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://www.hagley.org/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">Hagley Museum</a></td></tr>
+<tr><td>16</td><td>Old College Historic District</td><td class="county-newcastle">New Castle</td><td>Newark</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-yes">✓</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://archives.delaware.gov/delaware-historical-markers/old-college-a3/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">DE Archives</a></td></tr>
+<tr><td>17</td><td>Howard High School</td><td class="county-newcastle">New Castle</td><td>Wilmington</td><td><span class="cell-landmark">Nat'l Landmark</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://civilrightstrail.com/attraction/howard-high-school/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">US Civil Rights Trail</a></td></tr>
+<tr><td>18</td><td>African Union Church and Cemetery of Iron Hill and Museum complex</td><td class="county-newcastle">New Castle</td><td>Newark</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://history.delaware.gov/2021/10/04/iron-hill-church-national-register/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">DE Historical Affairs</a></td></tr>
+<tr><td>19</td><td>Fort Christina</td><td class="county-newcastle">New Castle</td><td>Wilmington</td><td><span class="cell-landmark">Nat'l Landmark</span></td><td><span class="cell-yes">✓</span></td><td><span class="cell-yes">✓</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://www.nps.gov/frst/planyourvisit/fort-christina.htm" target="_blank" style="color:#1B3A6B;text-decoration:underline;">NPS</a></td></tr>
+<tr><td>20</td><td>Cooch's Bridge Historic District</td><td class="county-newcastle">New Castle</td><td>Newark</td><td><span class="cell-landmark">Nat'l Landmark</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://friendsofcoochsbridge.org/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">Friends of Cooch's Bridge</a></td></tr>
+<tr><td>21</td><td>Hale-Byrnes House</td><td class="county-newcastle">New Castle</td><td>Stanton</td><td><span class="cell-landmark">Nat'l Landmark</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://www.halebyrnes.org/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">Official Site</a></td></tr>
+<tr><td>22</td><td>Ross, Gov. William H., House</td><td class="county-sussex">Sussex</td><td>Seaford</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://www.seafordhistoricalsociety.com/visit/gov-ross-mansion/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">Seaford Historical Society</a></td></tr>
+<tr><td>23</td><td>Old Christ Church</td><td class="county-sussex">Sussex</td><td>Laurel</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-yes">✓</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="http://www.stphilipsepiscopal.org/cc.html" target="_blank" style="color:#1B3A6B;text-decoration:underline;">St. Philip's Episcopal</a></td></tr>
+<tr><td>24</td><td>Sussex County Courthouse and the Circle</td><td class="county-sussex">Sussex</td><td>Georgetown</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-yes">✓</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://courts.delaware.gov/aoc/sccourthouse/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">DE Courts</a></td></tr>
+<tr><td>25</td><td>Phillips Potato House - in ok condition</td><td class="county-sussex">Sussex</td><td>Laurel</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://en.wikipedia.org/wiki/Phillips_Potato_House" target="_blank" style="color:#1B3A6B;text-decoration:underline;">Wikipedia</a></td></tr>
+<tr><td>26</td><td>Prospect A.M.E. Church</td><td class="county-sussex">Sussex</td><td>Georgetown</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://archives.delaware.gov/delaware-historical-markers/prospect-ame-church/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">DE Archives</a></td></tr>
+<tr><td>27</td><td>Johnson School - Nanticoke Community Center</td><td class="county-sussex">Sussex</td><td>Millsboro</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://www.nanticokeindians.org/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">Nanticoke Indian Tribe</a></td></tr>
+<tr><td>28</td><td>Camp Rehoboth Community Center at 37 Baltimore Ave</td><td class="county-sussex">Sussex</td><td>Lewes</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://www.camprehoboth.org/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">Official Site</a></td></tr>
+<tr><td>29</td><td>Delaware Breakwater and Lewes Harbor</td><td class="county-sussex">Sussex</td><td>Lewes</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://cheslights.org/delaware-breakwater-east-end/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">Chesapeake Chapter USLHS</a></td></tr>
+<tr><td>30</td><td>Fenwick Island Lighthouse Station</td><td class="county-sussex">Sussex</td><td>Fenwick Island</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-yes">✓</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://fenwickislandlighthouse.org/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">Official Site</a></td></tr>
+<tr><td>31</td><td>Lewes Historic District- Zwaanendael Museum image and several Dutch and early US sites</td><td class="county-sussex">Sussex</td><td>Lewes</td><td><span class="cell-tbd">—</span></td><td><span class="cell-tbd">—</span></td><td><span class="cell-yes">✓</span></td><td class="cell-tbd">TBD</td><td class="cell-yes">✓</td><td><a href="https://history.delaware.gov/zwaanendael-museum/" target="_blank" style="color:#1B3A6B;text-decoration:underline;">DE Historical Affairs</a></td></tr>
+</tbody>
+    </table>
+  </div>
+
+  <!-- FILES REFERENCE -->
+  <p class="section-title">📁 Files in This Folder</p>
+  <div class="task-list">
+    <div class="task">
+      <span class="task-icon">🌐</span>
+      <div class="task-body">
+        <div class="task-name">visit-de-history.html</div>
+        <div class="task-detail">Main page — 31 site cards organized by county. Open in browser to preview.</div>
+      </div>
+      <span class="task-badge badge-done">Ready</span>
+    </div>
+    <div class="task">
+      <span class="task-icon">📋</span>
+      <div class="task-body">
+        <div class="task-name">action-plan.html</div>
+        <div class="task-detail">This dashboard — project status, todos, Google Maps guide, sites table</div>
+      </div>
+      <span class="task-badge badge-done">Ready</span>
+    </div>
+    <div class="task">
+      <span class="task-icon">🗺</span>
+      <div class="task-body">
+        <div class="task-name">sites-for-google-maps.csv</div>
+        <div class="task-detail">Import directly into Google My Maps — 31 sites with addresses, county, marker flag</div>
+      </div>
+      <span class="task-badge badge-done">Ready</span>
+    </div>
+    <div class="task">
+      <span class="task-icon">📊</span>
+      <div class="task-body">
+        <div class="task-name">DE Historic Sites for DE Today (002).xlsx</div>
+        <div class="task-detail">Source of truth for site list — do not modify</div>
+      </div>
+      <span class="task-badge badge-done">Source</span>
+    </div>
+    <div class="task">
+      <span class="task-icon">📊</span>
+      <div class="task-body">
+        <div class="task-name">MASTER - State of Delaware Historical Marker Program.xlsx</div>
+        <div class="task-detail">743 markers — used to identify which sites have official markers</div>
+      </div>
+      <span class="task-badge badge-done">Source</span>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <strong>Visit Delaware History</strong> — Action Plan Dashboard · Delaware 250 Project · March 2026
+</footer>
+
+</body>
+</html>
