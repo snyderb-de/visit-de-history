@@ -1,32 +1,32 @@
-Name,Description,Address,City,State,County,Historical Marker,Website
-"Loockerman Hall","Kent County historic site","Delaware State College campus","Dover","Delaware","Kent","Yes","TBD"
-"Belmont Hall","Bicentennial Map","1 mi. S of Smyrna on U.S. 13","Smyrna","Delaware","Kent","Yes","TBD"
-"Governor's House","Bicentennial Map","Kings Hwy.","Dover","Delaware","Kent","No","TBD"
-"Brecknock","Kent County historic site","0.5 mi. N of Camden off U.S. 13","Camden","Delaware","Kent","Yes","TBD"
-"Dickinson - John - House","Bicentennial Map","5 mi. SE of Dover and 3 mi. E of U.S. 13 on Kitts Hummock Rd.","Dover","Delaware","Kent","No","TBD"
-"Barratt's Chapel","Kent County historic site","N of Frederica on U.S. 113","Frederica","Delaware","Kent","Yes","TBD"
-"Star Hill AME Church","Kent County historic site","Rt. 366 SE of Camden","Camden","Delaware","Kent","No","TBD"
-"Old Statehouse or The Green","Bicentennial Map","The Green","Dover","Delaware","Kent","No","TBD"
-"Thorne - Parson - Mansion","Bicentennial Map","501 N.W. Front St.","Milford","Delaware","Kent","No","TBD"
-"Vincelette Futuro House","Kent County historic site","4388 Deep Grass Lane","Houston","Delaware","Kent","No","TBD"
-"Corbit-Sharp House","National Landmark; Bicentennial Map","SW corner of Main and 2nd Sts.","Odessa","Delaware","New Castle","No","TBD"
-"Scott A.M.E. Zion Church","New Castle County historic site","629 E. 7th Street","Wilmington","Delaware","New Castle","Yes","TBD"
-"New Castle Historic District","Bicentennial Map","Bounded by Harmony St.; The Strand; 3rd St.; and Delaware St.","New Castle","Delaware","New Castle","No","TBD"
-"New Castle County Court House","National Landmark; Bicentennial Map","Delaware St.; between 2nd and 3rd Sts.","New Castle","Delaware","New Castle","No","TBD"
-"Eleutherian Mills","Bicentennial Map","N of Wilmington on DE 141 at Brandywine Creek Bridge","Wilmington","Delaware","New Castle","No","TBD"
-"Old College Historic District","Bicentennial Map","Main and College Sts. on University of Delaware campus","Newark","Delaware","New Castle","No","TBD"
-"Howard High School","National Landmark","13th and Poplar Sts.","Wilmington","Delaware","New Castle","No","TBD"
-"African Union Church and Cemetery of Iron Hill and Museum complex","New Castle County historic site","1578 Whittaker Rd.","Newark","Delaware","New Castle","No","TBD"
-"Fort Christina","National Landmark; Bicentennial Map","E. 7th St. and the Christina River; Fort Christina State Park","Wilmington","Delaware","New Castle","Yes","TBD"
-"Cooch's Bridge Historic District","National Landmark","N of Newark off DE 896","Newark","Delaware","New Castle","No","TBD"
-"Hale-Byrnes House","National Landmark","Corner of DE 7 and 4","Stanton","Delaware","New Castle","No","TBD"
-"Ross - Gov. William H. - House","Sussex County historic site","N of Seaford on Market St.","Seaford","Delaware","Sussex","No","TBD"
-"Old Christ Church","Bicentennial Map","SE of Laurel at jct. of SR 465 and 465A","Laurel","Delaware","Sussex","No","TBD"
-"Sussex County Courthouse and the Circle","Bicentennial Map","The Circle","Georgetown","Delaware","Sussex","No","TBD"
-"Phillips Potato House - in ok condition","Sussex County historic site","SW of jct. of DE 492 and DE 492A","Laurel","Delaware","Sussex","No","TBD"
-"Prospect A.M.E. Church","Sussex County historic site","220 South Railroad Ave.","Georgetown","Delaware","Sussex","No","TBD"
-"Johnson School - Nanticoke Community Center","Sussex County historic site","Rt. 24 between CR 309 and 310","Millsboro","Delaware","Sussex","No","TBD"
-"Camp Rehoboth Community Center at 37 Baltimore Ave","Sussex County historic site","37 Balttimore Ave.","Lewes","Delaware","Sussex","No","TBD"
-"Delaware Breakwater and Lewes Harbor","Sussex County historic site","E of Lewes at Cape Henlopen","Lewes","Delaware","Sussex","No","TBD"
-"Fenwick Island Lighthouse Station","Bicentennial Map","Off DE 54","Fenwick Island","Delaware","Sussex","No","TBD"
-"Lewes Historic District- Zwaanendael Museum image and several Dutch and early US sites","Bicentennial Map","Ship-carpenter; Front; Savannah; 2nd; 3rd; and 4th Sts.","Lewes","Delaware","Sussex","No","TBD"
+Name,Address,GPS,County
+Loockerman Hall,1200 N. Dupont Highway Dover 19901,"39.18556359124577, -75.54504537615405",Kent
+Belmont Hall,"217 Smyrna Leipsic Rd, Smyrna, DE 19977","39.294800995808416, -75.59583366403837",Kent
+Woodburn: The Governor's House,"151 Kings Hwy SW, Dover, DE 19901","39.16179828971196, -75.52316863391617",Kent
+Brecknock,"80 Old Camden Rd, Camden, DE 19934","39.12275117791096, -75.53533242574701",Kent
+John Dickenson House - Poplar Hall,"340 Kitts Hummock Rd, Dover, DE 19901","39.10313058004393, -75.44896762051064",Kent
+Barratt's Chapel,"6362 Bay Rd, Frederica, DE 19946","39.02490218103161, -75.45911870687719",Kent
+Star Hill AME Church,"357 Voshells Mill Star Hill Rd, Dover, DE 19901","39.10225573091403, -75.5359274222509",Kent
+Old Statehouse or The Green,"25 The Green, Dover, DE 19901","39.1567279412666, -75.5228997068914",Kent
+Thorne - Parson - Mansion,"501 NW Front St, Milford, DE 19963","38.91335977613854, -75.43503893576012",Kent
+Vincelette Futuro House,"4388 Deep Grass Ln, Houston, Delaware 19954","38.920310237911906, -75.51425773925185",Kent
+Corbit-Sharp House,"118 Main St, Odessa, DE 19730","39.45413766058417, -75.65703077805425",New Castle
+Scott A.M.E. Zion Church,"629 E 7th St, Wilmington, DE 19801","39.740517296228575, -75.5424327432192",New Castle
+New Castle Historic District,"10 Market St, New Castle, DE 19720","39.66475098686004, -75.56251330031537",New Castle
+New Castle County Court House,"211 Delaware St, New Castle, DE 19720","39.65997864439317, -75.56324231114178",New Castle
+Eleutherian Mills,"200 Hagley Creek Road, Wilmington, DE 19807","39.77511095903222, -75.57791177992624",New Castle
+Old College Historic District,"18 E Main St, Newark, DE 19711","39.70463257725731, -75.75434567388993",New Castle
+Howard High School,"401 E 12th St, Wilmington, DE 19801","39.74657126228597, -75.54187410106302",New Castle
+African Union Church and Cemetery of Iron Hill and Museum complex,"1578 Whittaker Rd, Newark, DE 19702","39.63345128978564, -75.76199788336817",New Castle
+Fort Christina,"1110 E 7th St, Wilmington, DE 19801","39.7372254824939, -75.53828857811308",New Castle
+Cooch's Bridge Historic District,"961 S Old Baltimore Pike, Newark, DE 19702","39.640311283340004, -75.73736134929992",New Castle
+Hale-Byrnes House,"606 Stanton Christiana Rd, Newark, DE 19713","39.70143571006796, -75.65054296646166",New Castle
+Governor Ross Mansion,"23669 Ross Station Rd, Seaford, DE 19973","38.657462672884336, -75.61879149340712",Sussex
+Old Christ Church,"Christ Church Rd & Chipmans Pond Rd, Delaware 19956","38.56117848429153, -75.53732827435034",Sussex
+Sussex County Courthouse and the Circle,"1 The Cir, Georgetown, DE 19947","38.690404549758625, -75.38516716625298",Sussex
+Phillips Potato House,SW of jct. of DE 492 and DE 492A,"38.5558119124722, -75.61638646541836",Sussex
+Prospect A.M.E. Church,"220 S Railroad Ave, Georgetown, DE 19947","38.69089801584448, -75.38025388393973",Sussex
+Johnson School - Nanticoke Community Center,"27073 John J. Williams Hwy, Millsboro, DE 19966","38.60707606289965, -75.21178501007897",Sussex
+Camp Rehoboth Community Center at 37 Baltimore Ave,"37 Baltimore Ave, Rehoboth Beach, DE 19971","38.71763036138658, -75.0800105455048",Sussex
+Delaware Breakwater and Lewes Harbor,"15099 Cape Henlopen Dr, Lewes, DE 19958","38.784337618098036, -75.09833253224211",Sussex
+Fenwick Island Lighthouse Station,"103 146th St, Ocean City, MD 21842","38.45162295763463, -75.05502864042144",Sussex
+Lewes Historic District- Zwaanendael Museum image and several Dutch and early US sites,"102 Kings Hwy, Lewes, DE 19958","38.774271524520614, -75.13918173201412",Sussex
